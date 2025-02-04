@@ -1,0 +1,132 @@
+@use '@angular/material' as mat;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  scroll-behavior: smooth;
+}
+
+// Material Design Theme Customization
+$my-primary: mat.define-palette(mat.$pink-palette, 600);
+$my-accent: mat.define-palette(mat.$purple-palette, A200, A100, A400);
+$my-warn: mat.define-palette(mat.$red-palette);
+
+$my-theme: mat.define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  typography: mat.define-typography-config(
+    $font-family: 'Lato, sans-serif',
+  ),
+  density: 0,
+));
+
+@include mat.core();
+@include mat.all-component-themes($my-theme);
+
+// Custom Material Form Field styles
+.mat-mdc-form-field {
+  display: block !important;
+
+  .mdc-text-field {
+    @apply bg-transparent;
+    padding: 0 !important;
+  }
+
+  .mdc-text-field--outlined {
+    --mdc-outlined-text-field-container-shape: theme('borderRadius.lg');
+    --mdc-outlined-text-field-outline-color: theme('colors.gray.300');
+    --mdc-outlined-text-field-hover-outline-color: theme('colors.gray.400');
+    --mdc-outlined-text-field-focus-outline-color: theme('colors.pink.600');
+    --mdc-outlined-text-field-error-outline-color: theme('colors.red.500');
+  }
+
+  .mdc-floating-label {
+    @apply text-gray-600;
+  }
+
+  .mat-mdc-form-field-icon-prefix,
+  .mat-mdc-form-field-icon-suffix {
+    @apply text-gray-400;
+  }
+
+  input.mat-mdc-input-element {
+    @apply text-gray-900;
+  }
+
+  .mat-mdc-form-field-error {
+    @apply text-red-600;
+    margin: 0;
+    font-size: 0.875rem;
+  }
+
+  // Fix for double outline
+  .mdc-notched-outline__leading,
+  .mdc-notched-outline__notch,
+  .mdc-notched-outline__trailing {
+    border-width: 1px !important;
+  }
+
+  // Fix for double label
+  .mdc-floating-label--float-above {
+    opacity: 1 !important;
+  }
+
+  // Fix for icon alignment
+  .mat-mdc-form-field-icon-prefix > .mat-icon,
+  .mat-mdc-form-field-icon-suffix > .mat-icon {
+    padding: 12px;
+    margin: -12px 0;
+    @apply text-gray-400;
+  }
+}
+
+// Enhanced button styles
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-stroked-button {
+  @apply rounded-lg;
+  
+  &:not(:disabled) {
+    @apply transform transition-transform duration-200;
+    
+    &:hover {
+      @apply -translate-y-0.5;
+    }
+    
+    &:active {
+      @apply translate-y-0;
+    }
+  }
+}
+
+.mat-mdc-raised-button.mat-primary {
+  @apply bg-pink-600 hover:bg-pink-700;
+}
+
+.mat-mdc-progress-spinner circle {
+  @apply stroke-current;
+}
+
+// Auth pages gradient animation
+.auth-gradient {
+  background: linear-gradient(-45deg, #fce7f3, #ede9fe, #dbeafe, #f0fdf4);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

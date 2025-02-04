@@ -1,0 +1,184 @@
+<div class="fixed w-full bg-white/95 backdrop-blur-lg border-b border-gray-100 shadow-lg z-50" role="navigation" aria-label="Main navigation">
+  <div class="nav-container">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-20">
+        <h1 class="text-2xl font-bold">
+          <a href="/" class="logo text-pink-600 hover:text-pink-700 transition-colors">
+            Mes que un grup de dones
+          </a>
+        </h1>
+        
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-6">
+          <a
+            href="/#activitats"
+            class="nav-item text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors"
+          >
+            Activitats
+          </a>
+          <a
+            routerLink="/contacte"
+            class="nav-item text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors"
+          >
+            Contacte
+          </a>
+
+          <!-- Auth Buttons -->
+          <ng-container *ngIf="!(supabase.user$ | async)">
+            <a
+              routerLink="/auth/login"
+              class="auth-button text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors px-4 py-2"
+            >
+              Iniciar sessió
+            </a>
+            <a
+              routerLink="/auth/register"
+              class="auth-button sign-up-button text-lg font-medium bg-pink-600 text-white hover:bg-pink-700 transition-colors rounded-lg px-6 py-2"
+            >
+              Registra't
+            </a>
+          </ng-container>
+
+          <!-- User Menu -->
+          <ng-container *ngIf="supabase.user$ | async">
+            <div class="relative">
+              <button
+                (click)="toggleUserMenu()"
+                class="user-button flex items-center space-x-2 text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors px-4 py-2 rounded-lg"
+                [attr.aria-expanded]="isUserMenuOpen"
+                aria-haspopup="true"
+              >
+                <lucide-icon name="user" class="w-6 h-6"></lucide-icon>
+                <span>El meu compte</span>
+                <lucide-icon [name]="isUserMenuOpen ? 'chevron-up' : 'chevron-down'" class="w-5 h-5"></lucide-icon>
+              </button>
+
+              <!-- User Dropdown Menu -->
+              <div
+                *ngIf="isUserMenuOpen"
+                class="user-menu absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl py-2 z-50 border border-gray-100"
+                role="menu"
+              >
+                <a
+                  routerLink="/reservations/my-reservations"
+                  class="flex items-center space-x-2 px-4 py-3 text-gray-700 hover:bg-pink-50 transition-colors"
+                  role="menuitem"
+                  (click)="closeUserMenu()"
+                >
+                  <lucide-icon name="calendar" class="w-5 h-5"></lucide-icon>
+                  <span>Les meves reserves</span>
+                </a>
+                <div class="border-t border-gray-200 my-2"></div>
+                <button
+                  (click)="signOut()"
+                  class="w-full flex items-center space-x-2 px-4 py-3 text-red-600 hover:bg-red-50 transition-colors"
+                  role="menuitem"
+                >
+                  <lucide-icon name="log-out" class="w-5 h-5"></lucide-icon>
+                  <span>Tancar sessió</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- CTA Reserva -->
+            <a
+              routerLink="/reservations"
+              class="flex items-center space-x-2 bg-pink-600 text-white px-6 py-2 rounded-lg transition-all duration-200 text-lg font-medium shadow-md hover:shadow-lg hover:bg-pink-700 transform hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <lucide-icon name="plus-circle" class="w-5 h-5"></lucide-icon>
+              <span>Nova reserva</span>
+            </a>
+          </ng-container>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <div class="md:hidden flex items-center space-x-4">
+          <button
+            (click)="toggleMenu()"
+            class="p-2.5 text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-full transition-all duration-200 ring-1 ring-gray-200"
+            [attr.aria-label]="isMenuOpen ? 'Tancar menú' : 'Obrir menú'"
+            [attr.aria-expanded]="isMenuOpen"
+          >
+            <lucide-icon [name]="isMenuOpen ? 'x' : 'menu'" class="w-5 h-5"></lucide-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div *ngIf="isMenuOpen" class="mobile-menu md:hidden bg-white shadow-lg border-t border-gray-100" role="menu">
+      <div class="px-4 py-2 space-y-2">
+        <!-- Mobile CTA Reserva -->
+        <ng-container *ngIf="supabase.user$ | async">
+          <a
+            routerLink="/reservations"
+            class="flex items-center justify-center space-x-2 bg-pink-600 hover:bg-pink-700 text-white px-6 py-3 rounded-lg transition-colors text-lg font-medium w-full mb-4 shadow-md"
+            (click)="closeMenu()"
+          >
+            <lucide-icon name="plus-circle" class="w-5 h-5"></lucide-icon>
+            <span>Nova reserva</span>
+          </a>
+        </ng-container>
+
+        <a
+          href="/#activitats"
+          class="block text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors py-3"
+          role="menuitem"
+          (click)="closeMenu()"
+        >
+          Activitats
+        </a>
+        <a
+          routerLink="/contacte"
+          class="block text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors py-3"
+          role="menuitem"
+          (click)="closeMenu()"
+        >
+          Contacte
+        </a>
+
+        <!-- Mobile Auth Buttons -->
+        <ng-container *ngIf="!(supabase.user$ | async)">
+          <a
+            routerLink="/auth/login"
+            class="block text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors py-3"
+            role="menuitem"
+            (click)="closeMenu()"
+          >
+            Iniciar sessió
+          </a>
+          <a
+            routerLink="/auth/register"
+            class="block text-lg font-medium text-pink-600 hover:text-pink-700 transition-colors py-3"
+            role="menuitem"
+            (click)="closeMenu()"
+          >
+            Registra't
+          </a>
+        </ng-container>
+
+        <!-- Mobile User Menu -->
+        <ng-container *ngIf="supabase.user$ | async">
+          <div class="border-t border-gray-200 my-2"></div>
+          <a
+            routerLink="/reservations/my-reservations"
+            class="flex items-center space-x-2 text-lg font-medium text-gray-700 hover:text-pink-600 transition-colors py-3"
+            role="menuitem"
+            (click)="closeMenu()"
+          >
+            <lucide-icon name="calendar" class="w-5 h-5"></lucide-icon>
+            <span>Les meves reserves</span>
+          </a>
+          <button
+            (click)="signOut()"
+            class="w-full flex items-center space-x-2 text-lg font-medium text-red-600 hover:bg-red-50 transition-colors py-3"
+            role="menuitem"
+          >
+            <lucide-icon name="log-out" class="w-5 h-5"></lucide-icon>
+            <span>Tancar sessió</span>
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,113 @@
+/* Calendar styles */
+::ng-deep {
+  .calendar-with-events {
+    width: 100% !important;
+    
+    .mat-calendar {
+      width: 100% !important;
+    }
+
+    .mat-calendar-table {
+      width: 100% !important;
+    }
+
+    .mat-calendar-body-cell {
+      position: relative;
+      height: 40px !important;
+      
+      &.has-event::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: theme('colors.pink.600');
+      }
+      
+      &.multiple-events::after {
+        width: 8px;
+        height: 4px;
+        border-radius: 2px;
+      }
+    }
+
+    .mat-calendar-body-cell-content {
+      width: 36px !important;
+      height: 36px !important;
+      line-height: 36px !important;
+      font-size: 1rem !important;
+    }
+
+    .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+      border-color: theme('colors.pink.600') !important;
+    }
+
+    .mat-calendar-body-selected {
+      background-color: theme('colors.pink.600') !important;
+      color: white !important;
+    }
+  }
+
+  .dark {
+    .calendar-with-events {
+      .has-event::after {
+        background-color: theme('colors.pink.400');
+      }
+
+      .mat-calendar-body-cell-content {
+        color: theme('colors.gray.300');
+      }
+
+      .mat-calendar-body-today:not(.mat-calendar-body-selected) {
+        border-color: theme('colors.pink.400') !important;
+      }
+
+      .mat-calendar-body-selected {
+        background-color: theme('colors.pink.500') !important;
+      }
+    }
+  }
+}
+
+/* View toggle buttons */
+.view-toggle {
+  @apply transition-colors duration-200;
+  
+  &:hover {
+    @apply bg-pink-50 dark:bg-pink-900;
+  }
+  
+  &.active {
+    @apply bg-pink-600 text-white;
+    
+    &:hover {
+      @apply bg-pink-700;
+    }
+  }
+}
+
+/* Reservation card animations */
+.reservation-card {
+  @apply transform transition-all duration-300;
+  
+  &:hover {
+    @apply -translate-y-1 shadow-xl;
+  }
+}
+
+/* Cancel button hover effect */
+.cancel-button {
+  @apply transition-colors duration-200 relative overflow-hidden;
+  
+  &::before {
+    content: '';
+    @apply absolute inset-0 bg-red-100 dark:bg-red-900 opacity-0 transition-opacity duration-200;
+  }
+  
+  &:hover::before {
+    @apply opacity-100;
+  }
+}

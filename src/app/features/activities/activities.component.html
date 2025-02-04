@@ -1,0 +1,11 @@
+<section id="activitats" class="py-16 bg-white dark:bg-gray-800 fade-in">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">Les nostres activitats</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <app-activity-card
+        *ngFor="let activity of activities"
+        [activity]="activity">
+      </app-activity-card>
+    </div>
+  </div>
+</section>

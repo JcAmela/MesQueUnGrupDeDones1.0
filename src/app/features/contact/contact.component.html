@@ -1,0 +1,64 @@
+<section id="contacte" class="py-16 bg-white dark:bg-gray-800 fade-in">
+  <div class="max-w-3xl mx-auto px-4">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">Contacta'ns</h2>
+    <div class="bg-lavender-50 dark:bg-gray-700 rounded-lg p-8 shadow-lg">
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
+        <div>
+          <label for="name" class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">Nom</label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-500 dark:bg-gray-800 dark:text-white text-lg"
+            required
+            aria-required="true"
+          />
+        </div>
+        <div>
+          <label for="phone" class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">Telèfon</label>
+          <input
+            type="tel"
+            id="phone"
+            formControlName="phone"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-500 dark:bg-gray-800 dark:text-white text-lg"
+            required
+            aria-required="true"
+          />
+        </div>
+        <div>
+          <label for="message" class="block text-gray-700 dark:text-gray-200 font-semibold mb-2">Missatge</label>
+          <textarea
+            id="message"
+            formControlName="message"
+            rows="4"
+            class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-pink-500 dark:bg-gray-800 dark:text-white text-lg"
+            required
+            aria-required="true"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          class="btn w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-8 rounded-lg transition-colors text-xl"
+          [disabled]="!contactForm.valid"
+        >
+          Enviar missatge
+        </button>
+      </form>
+
+      <div class="mt-12 space-y-4">
+        <div class="flex items-center space-x-4 text-gray-700 dark:text-gray-200">
+          <i-lucide name="phone"></i-lucide>
+          <span>+34 123 456 789</span>
+        </div>
+        <div class="flex items-center space-x-4 text-gray-700 dark:text-gray-200">
+          <i-lucide name="mail"></i-lucide>
+          <span>info&#64;mesqueungrup.cat</span>
+        </div>
+        <div class="flex items-center space-x-4 text-gray-700 dark:text-gray-200">
+          <i-lucide name="map-pin"></i-lucide>
+          <span>Carrer Example, 123, Barcelona</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

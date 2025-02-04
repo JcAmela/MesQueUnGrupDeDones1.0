@@ -1,0 +1,22 @@
+[build]
+  command = "npm run build"
+  publish = "dist/mes-que-un-grup-angular"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true
+
+[build.environment]
+  NODE_VERSION = "20.9.0"
+  NPM_FLAGS = "--legacy-peer-deps"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Content-Security-Policy = "default-src 'self'; img-src 'self' https://images.unsplash.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.calendly.com; connect-src 'self' https://dmktlcanwjsfwrjycsug.supabase.co;"

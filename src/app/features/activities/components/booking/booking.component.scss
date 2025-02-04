@@ -1,0 +1,23 @@
+/* Booking modal specific styles */
+:host {
+  display: block;
+}
+
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+}
+
+.modal-content {
+  animation: modalFadeIn 0.3s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

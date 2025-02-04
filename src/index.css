@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  scroll-behavior: smooth;
+  --transition-speed: 0.3s;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+/* Enhanced accessibility focus styles */
+*:focus-visible {
+  outline: 3px solid #e11d48;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition: all var(--transition-speed) ease-in-out;
+}
+
+/* Enhanced button styles */
+.btn {
+  @apply transform transition-all duration-300 hover:scale-105 active:scale-95;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Card hover effects */
+.activity-card {
+  @apply transform transition-all duration-300 hover:shadow-2xl hover:-translate-y-2;
+}
+
+/* Image hover effects */
+.gallery-image {
+  @apply transform transition-all duration-300 hover:scale-105 hover:shadow-xl;
+}

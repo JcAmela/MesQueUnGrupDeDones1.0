@@ -1,0 +1,118 @@
+/* Enhanced navbar styles */
+:host {
+  @apply fixed w-full top-0 z-50;
+}
+
+.nav-container {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+/* Logo hover effect */
+.logo {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+/* Nav items hover effect */
+.nav-item {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: currentColor;
+    transition: width 0.3s ease;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}
+
+/* Mobile menu animation */
+.mobile-menu {
+  transform-origin: top;
+  animation: slideDown 0.3s ease-out forwards;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: scaleY(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleY(1);
+  }
+}
+
+/* Auth buttons */
+.auth-button {
+  @apply transition-all duration-300;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.sign-up-button {
+  @apply relative overflow-hidden shadow-md hover:shadow-lg;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+    transform: translate(-50%, -50%) scale(0);
+    transition: transform 0.5s ease-out;
+  }
+  
+  &:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* User menu dropdown animation */
+.user-menu {
+  animation: fadeInScale 0.2s ease-out forwards;
+  transform-origin: top right;
+  @apply shadow-xl;
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,50 @@
+<div class="activity-card bg-white rounded-lg shadow-lg overflow-hidden flex flex-col h-full transform transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+  <div class="relative aspect-video overflow-hidden">
+    <img
+      [src]="activity.image"
+      [alt]="'Activitat de ' + activity.title + ': Grup de dones grans practicant ' + activity.title + ' en un ambient acollidor i social'"
+      class="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-300"
+      loading="lazy"
+      width="800"
+      height="450"
+      fetchpriority="high"
+      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 400px"
+    />
+  </div>
+  <div class="p-6 flex flex-col flex-grow">
+    <div class="flex-grow space-y-4">
+      <h3 class="text-2xl font-bold text-gray-800">{{activity.title}}</h3>
+      <p class="text-gray-600 text-lg leading-relaxed">{{activity.description}}</p>
+      <div class="bg-lavender-50 rounded-lg p-4">
+        <p class="text-pink-600 font-semibold text-lg mb-2">{{activity.schedule}}</p>
+        <p class="text-gray-600">{{activity.benefits}}</p>
+      </div>
+      
+      <!-- Location Section -->
+      <div class="bg-white rounded-lg p-4 shadow-sm">
+        <div class="flex items-start space-x-3">
+          <lucide-icon name="map-pin" class="text-pink-600 flex-shrink-0 mt-1"></lucide-icon>
+          <div>
+            <h4 class="font-semibold text-gray-800">{{activity.location.name}}</h4>
+            <p class="text-gray-600 text-sm mt-1">{{activity.location.address}}</p>
+            <a [href]="activity.location.mapsUrl"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="inline-flex items-center text-pink-600 hover:text-pink-700 text-sm mt-2 transition-colors">
+              <span>Veure al mapa</span>
+              <lucide-icon name="external-link" class="w-4 h-4 ml-1"></lucide-icon>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a
+      routerLink="/reservations"
+      class="btn w-full bg-pink-600 hover:bg-pink-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 text-lg flex items-center justify-center space-x-2 mt-6 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 active:translate-y-0"
+    >
+      <lucide-icon name="calendar" class="w-5 h-5"></lucide-icon>
+      <span>Reservar Plaça</span>
+    </a>
+  </div>
+</div>
