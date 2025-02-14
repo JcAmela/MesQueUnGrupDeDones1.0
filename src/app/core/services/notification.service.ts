@@ -33,4 +33,13 @@ export class NotificationService {
       panelClass: ['bg-blue-600', 'text-white']
     });
   }
+
+  loading(message: string): void {
+    this.snackBar.open(message, '', {
+      duration: 3000, // Duración del mensaje
+      horizontalPosition: 'end',
+      verticalPosition: 'bottom',
+      panelClass: ['bg-yellow-600', 'text-white']
+    });
+  }
 }

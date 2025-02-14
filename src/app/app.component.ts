@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ThemeService } from './core/services/theme.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { SupabaseService } from './core/services/supabase.service';
 
 @Component({
   selector: 'app-root',
@@ -16,8 +17,10 @@ export class AppComponent {
 
   constructor(
     public themeService: ThemeService,
-    private router: Router
+    private router: Router,
+    private supabaseService: SupabaseService
   ) {
+    this.supabaseService.ensureInitialized();
     // Subscribe to router events to hide hero on specific pages
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)

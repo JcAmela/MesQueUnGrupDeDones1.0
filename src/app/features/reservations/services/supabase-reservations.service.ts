@@ -161,9 +161,9 @@ export class SupabaseReservationsService implements OnDestroy {
   }
 
   async getAvailableClasses(): Promise<Class[]> {
+    await this.supabase.ensureInitialized();
     return this.loadingService.withLoading(async () => {
       try {
-        await this.supabase.ensureInitialized();
         
         const { data, error } = await this.withRetry(async () => {
           const today = new Date();
@@ -207,9 +207,9 @@ export class SupabaseReservationsService implements OnDestroy {
   }
 
   async getUserReservations(): Promise<Reservation[]> {
+    await this.supabase.ensureInitialized();
     return this.loadingService.withLoading(async () => {
       try {
-        await this.supabase.ensureInitialized();
         const session = await firstValueFrom(this.supabase.session$);
         if (!session?.user) throw new Error('User not authenticated');
 
@@ -237,9 +237,9 @@ export class SupabaseReservationsService implements OnDestroy {
   }
 
   async createReservation(classId: string): Promise<Reservation> {
+    await this.supabase.ensureInitialized();
     return this.loadingService.withLoading(async () => {
       try {
-        await this.supabase.ensureInitialized();
         const session = await firstValueFrom(this.supabase.session$);
         if (!session?.user) throw new Error('User not authenticated');
 
@@ -284,8 +284,8 @@ export class SupabaseReservationsService implements OnDestroy {
   }
 
   private async addToWaitingList(classId: string): Promise<any> {
+    await this.supabase.ensureInitialized();
     try {
-      await this.supabase.ensureInitialized();
       const session = await firstValueFrom(this.supabase.session$);
       if (!session?.user) throw new Error('User not authenticated');
 
@@ -328,9 +328,9 @@ export class SupabaseReservationsService implements OnDestroy {
   }
 
   async cancelReservation(reservationId: string): Promise<void> {
+    await this.supabase.ensureInitialized();
     return this.loadingService.withLoading(async () => {
       try {
-        await this.supabase.ensureInitialized();
         
         const { error } = await this.withRetry(async () =>
           this.supabase.client
@@ -357,8 +357,8 @@ export class SupabaseReservationsService implements OnDestroy {
     reserved: number;
     waiting: number;
   }> {
+    await this.supabase.ensureInitialized();
     try {
-      await this.supabase.ensureInitialized();
       
       const { data: classData, error: classError } = await this.withRetry(async () =>
         this.supabase.client

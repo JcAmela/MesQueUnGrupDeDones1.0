@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ChangeDetectorRef, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SupabaseService } from '../../../../core/services/supabase.service';
@@ -9,8 +9,8 @@ import { NotificationService } from '../../../../core/services/notification.serv
   templateUrl: './login.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
   loading = false;
   error: string | null = null;
   hidePassword = true;
@@ -19,15 +19,19 @@ export class LoginComponent {
 
   constructor(
     private fb: FormBuilder,
-    private supabase: SupabaseService,
     private router: Router,
     private cdr: ChangeDetectorRef,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private supabase: SupabaseService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
+  }
+
+  async ngOnInit() {
+    await this.supabase.ensureInitialized();
   }
 
   async onSubmit() {
@@ -43,8 +47,6 @@ export class LoginComponent {
       this.cdr.detectChanges();
       
       try {
-        await this.supabase.ensureInitialized();
-        
         const { error } = await this.supabase.signIn(
           this.loginForm.get('email')?.value,
           this.loginForm.get('password')?.value
@@ -67,6 +69,8 @@ export class LoginComponent {
         // Reset attempts on successful login
         this.currentAttempt = 0;
         this.notificationService.success('Sessió iniciada correctament');
+        // Redirigir a la página de inicio después de un inicio de sesión exitoso
+        this.router.navigate(['/']);
       } catch (error: any) {
         console.error('Error signing in:', error);
         this.currentAttempt++;

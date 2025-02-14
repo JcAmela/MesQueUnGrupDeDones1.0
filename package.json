@@ -44,5 +44,19 @@
     "postcss": "^8.4.35",
     "tailwindcss": "^3.4.1",
     "typescript": "~5.3.2"
-  }
+  },
+  "description": "[Edit in StackBlitz next generation editor ⚡️](https://stackblitz.com/~/github.com/JcAmela/MesQueUnGrupDeDones1.0)",
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JcAmela/MesQueUnGrupDeDones1.0.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/JcAmela/MesQueUnGrupDeDones1.0/issues"
+  },
+  "homepage": "https://github.com/JcAmela/MesQueUnGrupDeDones1.0#readme"
 }
