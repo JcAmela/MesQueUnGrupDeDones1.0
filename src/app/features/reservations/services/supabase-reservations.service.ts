@@ -1,8 +1,8 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { SupabaseService } from '../../../core/services/supabase.service';
 import { BehaviorSubject, firstValueFrom, Subject, Observable } from 'rxjs';
-import { takeUntil, map } from 'rxjs/operators';
-import { Class, Reservation, WaitingListEntry } from '../models/reservation.types';
+import { map } from 'rxjs/operators';
+import { Class, Reservation} from '../models/reservation.types';
 import { RealtimeChannel } from '@supabase/supabase-js';
 import { NotificationService } from '../../../core/services/notification.service';
 import { LoadingService } from '../../../core/services/loading.service';

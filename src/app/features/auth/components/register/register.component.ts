@@ -43,7 +43,7 @@ export class RegisterComponent {
       try {
         const { error } = await this.supabase.signUp(email, password);
 
-        // Limpiar temporizador si la llamada se completa antes de 3 segundos
+        // Limpiar temporizador si la llamada se  completa antes de 3 segundos
         clearTimeout(timer);
 
         if (error) throw error;
