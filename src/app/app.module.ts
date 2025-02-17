@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,8 +7,12 @@ import { LucideAngularModule, Loader, User } from 'lucide-angular'; // Importa e
 import { ActivitiesModule } from './features/activities/activities.module';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { registerLocaleData } from '@angular/common';
+import localeCa from '@angular/common/locales/ca';
 
 import { AppComponent } from './app.component';
+
+registerLocaleData(localeCa);
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +26,9 @@ import { AppComponent } from './app.component';
     MatSnackBarModule,
     LucideAngularModule.pick({ Loader, User }) // Incluye el ícono User
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: 'ca' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

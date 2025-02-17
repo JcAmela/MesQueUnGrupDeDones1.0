@@ -33,7 +33,6 @@ export class RegisterComponent {
 
       // Mostrar mensaje de carga
       this.loading = true;
-      this.notificationService.loading('Cargando...');
 
       // Configurar temporizador para mostrar mensaje adicional
       const timer = setTimeout(() => {
