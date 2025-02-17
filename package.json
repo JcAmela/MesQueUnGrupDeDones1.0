@@ -1,6 +1,6 @@
 {
-  "name": "mes-que-un-grup-angular",
-  "version": "0.0.0",
+  "name": "mes-que-un-grup-de-dones",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -28,9 +28,8 @@
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3",
-    "lru-cache": "^latest",
-    "@npmcli/package-json": "^latest",
-    "rimraf": "^4.0.0",
+    "lru-cache": "^10.0.0",
+    "@npmcli/package-json": "^1.0.0",
     "glob": "^9.0.0"
   },
   "devDependencies": {
